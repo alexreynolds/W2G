@@ -1,0 +1,76 @@
+/* controlstyle.css
+
+	Author: Alex Reynolds
+
+	Main stylesheet for the administrative control panel areas.
+
+*/
+
+html, body {
+	background: none;
+	background-color: #fff;
+	color: #3d3d3d;
+}
+
+a {
+	color: #28ddcc;
+}
+
+a:visited {
+	color: #28ddcc;
+}
+
+a:hover {
+	color: #fc8c30;
+}
+
+/* Left side bar navigation */
+#controlnav {
+	background-color: #fc8c30;
+	position: absolute;
+	top: 0;
+	left: 0;
+	color: #fff;
+	width: 200px;
+	height: 100%;
+}
+
+/* Links list in nav */
+#controlnav ul {
+	text-decoration: none;
+	list-style: none;
+	text-align: left;
+	padding: 0;
+	margin: 0;
+	margin-top: 100px;
+	margin-left: 20px;
+	font-size: 1.3em;
+	width: 150px;
+}
+
+#controlnav li {
+	margin: 0;
+	width: 100%;
+	padding: 20px;
+	vertical-align: middle;
+}
+
+#controlnav a:hover {
+	color: #fff;
+}
+
+/* Divs containing forms */
+.form {
+	text-align: left;
+	margin-left: 300px;
+}
+
+/* Hidden div that displays based on form inputs */
+.moreoptions {
+	display: none;
+}
+
+/* Div to input price information in addevent.php */
+#priceinfo {
+	display: inline-block;
+}

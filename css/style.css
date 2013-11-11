@@ -1,0 +1,61 @@
+/* style.css
+
+	Author: Alex Reynolds
+
+	The primary style sheet for the Where to Go web application
+
+*/
+
+html { 
+  background: url(../images/bg.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-family: 'Dosis', Arial, sans-serif;
+}
+
+body {
+	color: #fff;
+	font-size: .8em;
+}
+
+.wrapper {
+	width: 100%;
+	height: 100%;
+	text-align: center;
+}
+
+.content {
+	text-align: center;
+	vertical-align: middle;
+	width: 100%;
+	height: auto;
+	padding-top: 100px;
+}
+
+a {
+	text-decoration: none;
+	color: #fff;
+}
+
+a:visited {
+	color: #fff;
+}
+
+a:hover {
+	color: #f95332;
+}
+
+h1 {
+	font-size: 5em;
+}
+
+/* A div fixed in the top right corner */
+.topright {
+	position:fixed !important;
+    position: absolute; /* for ie6 */
+    top: 0;
+    right: 0;
+    margin: 1em;
+}

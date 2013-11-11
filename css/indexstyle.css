@@ -1,0 +1,111 @@
+/* indexstyle.css
+
+Author: Alex Reynolds
+
+Stylesheet for the home page of the web application
+
+*/
+
+/* Popup div for administrator login */
+#adminlogin {
+	display: none;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -150px;
+	margin-left: -125px;
+	width: 250px;
+	height: 300px;
+	background-color: #fff;
+	border-radius: 5px;
+	color: #3d3d3d;
+	padding: 25px;
+	vertical-align: middle;
+	text-align: left;
+	/* Drop shadow */
+	-webkit-box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.3);
+	/* For fade in/out effect 
+	-webkit-transition: all 3s ease;
+  -moz-transition: all 3s ease;
+  -ms-transition: all 3s ease;
+  -o-transition: all 3s ease;
+  transition: all 3s ease; */
+}
+
+#adminlogin h1 {
+	font-size: 2em;
+}
+
+#adminlogin a {
+	color: #28ddcc;
+}
+
+#adminlogin input[type=text] {
+	width:90%;
+	display: block;
+	border: 1px solid #dddddd;
+	height: 50px;
+	font-size: 1.5em;
+	padding-left: 5px;
+	color: #dddddd;
+	/*
+	-webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3); */
+}
+
+/* When the user is entering text */
+#adminlogin input[type=text]:focus {
+	border: #333;
+	color: #3d3d3d;
+}
+
+#adminlogin input[type=password] {
+	width:90%;
+	display: block;
+	border: 1px solid #dddddd;
+	height: 50px;
+	font-size: 1.5em;
+	padding-left: 5px;
+}
+
+/* When the user is entering text */
+#adminlogin input[type=text]:focus {
+	border: #333;
+}
+
+#adminlogin input[type=submit] {
+	width:100px;
+	position:absolute;
+	right:20px;
+	bottom:20px;
+	background:#28ddcc;
+	color:#fff;
+	font-size: 1.3em;
+	font-family: 'Dosis', Arial, sans-serif;
+	height:30px;
+	border: none;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-transition: all .3s ease;
+  -moz-transition: all .3s ease;
+  -ms-transition: all .3s ease;
+  -o-transition: all .3s ease;
+  transition: all .3s ease;
+}
+
+#adminlogin input[type=submit]:hover {
+	background:#fc8c30;
+	color:#fff;
+}
+
+#iconquit {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	width: 15px;
+	height: 15px;
+}
