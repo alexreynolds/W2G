@@ -63,6 +63,12 @@ a:hover {
 .form {
 	text-align: left;
 	margin-left: 300px;
+	line-height: 2em;
+}
+
+/* Spans containing error messages for divs */
+.error {
+	color: #f05557;
 }
 
 /* Hidden div that displays based on form inputs */
@@ -73,4 +79,37 @@ a:hover {
 /* Div to input price information in addevent.php */
 #priceinfo {
 	display: inline-block;
+}
+
+/* Input buttons for forms */
+input[type=submit] {
+	width:100px;
+	background:#28ddcc;
+	color:#fff;
+	font-size: 1.3em;
+	font-family: 'Dosis', Arial, sans-serif;
+	height:30px;
+	border: none;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-transition: all .3s ease;
+  -moz-transition: all .3s ease;
+  -ms-transition: all .3s ease;
+  -o-transition: all .3s ease;
+  transition: all .3s ease;
+}
+
+/* Table containing list of event categories */
+#categorytable {
+	margin: 0;
+	margin-left: 50px;
+	border: none;
+	text-align: center;
+	vertical-align: middle;
+	font-size: 1em;
+}
+
+#categorytable td {
+	padding: 5px;
 }

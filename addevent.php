@@ -7,6 +7,10 @@
 	TO DO:
 		- Make list of cities dynamically updating based on tables in database (or list somewhere else)
 		- Dynamically updating preview image of event entry on right?
+		- ** PLACE TO UPLOAD IMAGE FOR EVENT ***
+		- Check to ensure that at least one category checkbox has been checked
+		- Add required error messages to inputs
+		- Add indicator of which user submitted the event
 
 -->
 
@@ -56,11 +60,14 @@
 <!-- Form to enter a new event -->
 <div class="form" id="neweventform">
 
+  <!-- php to process the form -->
+  <?php require('scripts/newevent.php') ?>
+
   <h2>Add event</h2>
   Fill out this form to submit a new event to the database.<br>
 
-	<form action="??" method="post">
-	Event name <input type="text" name="name" maxlength="255" placeholder="Event name"><br>
+	<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+	Event name <input type="text" name="name" maxlength="255" placeholder="Event name" required><span class="error"> * <?php echo $nameErr;?></span><br>
 	City <select name="city" id="selectcity" onChange="getSelValue()" required>
 			<option value="select" disabled>Select a city</option>
 			<option value="haarlem">Haarlem</option>
@@ -90,35 +97,33 @@
 			<option value="ZH">Zuid Holland</option>
 			</select>
 			<br>
-	Address <input type="text" name="street" maxlength="30">  House number <input type="text" name="housenr" maxlength="10"><br>
-	Postcode <input type="text" name="postcode" maxlength="6"><br>
-	Indoors <input type="checkbox" name="indoors"> Outdoors <input type="checkbox" name="outdoors"><br>
-	Start time <input type="text" name="starttime" maxlength="5" placeholder="12:00"> End time <input type="text" name="endtime" maxlength="5" placeholder="12:00"><br>
+	Street address <input type="text" name="street" maxlength="30" required>  House number <input type="text" name="housenr" maxlength="10" required><br>
+	Postcode <input type="text" name="postcode" maxlength="6" required><br>
+	Indoors <input type="checkbox" name="inout[]" value="in"> Outdoors <input type="checkbox" name="inout[]" value="out"><br>
+	Start time <input type="text" name="starttime" maxlength="5" placeholder="12:00" required> End time <input type="text" name="endtime" maxlength="5" placeholder="12:00" required><br>
+	<!-- EVENTUALLY ADD OPTION FOR TICKETS THROUGH APP (checkbox) -->
 	<div id="priceinfo">Ticket price (€) <input type="text" name="price" placeholder="5.00" maxlength="5"></div> It's free! <input type="checkbox" name="free"><br>
-	Category<br />
-	<select name="category" id="category" onChange="getCategory()" required>
-	<option value="select" disabled>Select a type</option>
-	<option value="drink">Drink</option>
-	<option value="appetizer">Appetizer</option>
-	<option value="salad">Salad</option>
-	<option value="main">Main</option>
-	<option value="dessert">Dessert</option>
-	</select>
-	<br /><br />
-	Vegetarian?<br />
-	<select name="veg" id="vegadd" onChange="getCategory(vegadd)" required>
-	<option value="select" disabled>Select</option>
-	<option value="1">Yes</option>
-	<option value="0">No</option>
-	</select>
-	<br /><br />
-	Description
-	<input type="text" id="desc" name="desc" maxlength="250"><br />
+	Event website <input type="text" name="siteURL" maxlength="255" placeholder="URL"><br>
+	Event Facebook <input type="text" name="fbURL" maxlength="255" placeholder="URL"><br>
+	Event description <textarea name="desc" rows=3 cols=15 maxlength="250"></textarea><br>
+	What categories does this event fall under? (Check all that apply, please select at least one)<br>
 
-	<br /><br />
+		<table id="categorytable"><tr>
+		<td>Nature<br><input type="checkbox" name="categories[]" value="nature"></td>
+		<td>Food<br><input type="checkbox" name="categories[]" value="food"></td>
+		<td>Art<br><input type="checkbox" name="categories[]" value="art"></td>
+		</tr><tr>
+		<td>Exposition<br><input type="checkbox" name="categories[]" value="expo"></td>
+		<td>Theme Parks<br><input type="checkbox" name="categories[]" value="theme"></td>
+		<td>Culture<br><input type="checkbox" name="categories[]" value="culture"></td>
+		</tr><tr>
+		<td>Festival<br><input type="checkbox" name="categories[]" value="festival"></td>
+		<td>Theater<br><input type="checkbox" name="categories[]" value="theater"></td>
+		<td>Market<br><input type="checkbox" name="categories[]" value="market"></td>
+		</tr></table>
 
-	<input type="submit" value="Add item"><br />
-
+	<br><br>
+	<input type="submit" value="Add event"><br />
 	</form>
 
 </div> <!-- End form div -->
