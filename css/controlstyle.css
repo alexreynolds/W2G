@@ -66,6 +66,11 @@ a:hover {
 	line-height: 2em;
 }
 
+.form input, textarea {
+	border-radius: 3px;
+	border: 1px solid #dddddd;
+}
+
 /* Spans containing error messages for divs */
 .error {
 	color: #f05557;

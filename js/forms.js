@@ -12,6 +12,7 @@ $(document).ready(function() {
 	$('input[name=multiday]').change(function() {
 		console.log('multiday');
         $('#multidayinfo').toggle();
+        $('input[name=date]').toggle();
 	})
 
 	// When a province is selected

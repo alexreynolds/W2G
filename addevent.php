@@ -67,21 +67,23 @@
   Fill out this form to submit a new event to the database.<br>
 
 	<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-	Event name <input type="text" name="name" maxlength="255" placeholder="Event name" required><span class="error"> * <?php echo $nameErr;?></span><br>
-	City <select name="city" id="selectcity" onChange="getSelValue()" required>
+	Event name <input type="text" name="name" maxlength="255" placeholder="Event name"><span class="error"> * <?php echo $nameErr;?></span><br>
+	City <select name="city" id="selectcity" onChange="getSelValue()">
 			<option value="select" disabled>Select a city</option>
 			<option value="haarlem">Haarlem</option>
 			<option value="hoofddorp">Hoofddorp</option>
 			<option value="leiden">Leiden</option>
 			</select>
+			<span class="error"> * <?php echo $cityErr;?></span>
 			<br>
-	Event date <input type="date" name="date"> Multi-day event <input type="checkbox" name="multiday"><br>
+	Event date <input type="date" name="date"><br>
+		Multi-day event <input type="checkbox" name="multiday"><br>
 		  <!-- Div to input more information if the event will take several days -->
 		  <div class="moreoptions" id="multidayinfo">
-		  Start date <input type="date" name="startdate">
-		  End date <input type="date" name="enddate">
+		  Start date <input type="date" name="startdate"><span class="error"> * <?php echo $startdateErr;?></span><br>
+		  End date <input type="date" name="enddate"><span class="error"> * <?php echo $enddateErr;?></span>
 		  </div>
-	Province <select name="province" id="selectprovince" required>
+	Province <select name="province" id="selectprovince">
 			<option value="select" disabled>Select a province</option>
 			<option value="DR">Drenthe</option>
 			<option value="FL">Flevoland</option>
@@ -96,17 +98,18 @@
 			<option value="ZE">Zeeland</option>
 			<option value="ZH">Zuid Holland</option>
 			</select>
+			<span class="error"> * <?php echo $provinceErr;?></span>
 			<br>
-	Street address <input type="text" name="street" maxlength="30" required>  House number <input type="text" name="housenr" maxlength="10" required><br>
-	Postcode <input type="text" name="postcode" maxlength="6" required><br>
-	Indoors <input type="checkbox" name="inout[]" value="in"> Outdoors <input type="checkbox" name="inout[]" value="out"><br>
-	Start time <input type="text" name="starttime" maxlength="5" placeholder="12:00" required> End time <input type="text" name="endtime" maxlength="5" placeholder="12:00" required><br>
+	Street address <input type="text" name="street" maxlength="30"><span class="error"> * <?php echo $streetErr;?></span>  House number <input type="text" name="housenr" maxlength="10" size="5"><span class="error"> * <?php echo $housenrErr;?></span><br>
+	Postcode <input type="text" name="postcode" maxlength="6" size="6"><br>
+	Indoors <input type="checkbox" name="inout[]" value="in"> Outdoors <input type="checkbox" name="inout[]" value="out"><span class="error"> * <?php echo $inoutErr;?></span><br>
+	Start time <input type="text" name="starttime" maxlength="5" placeholder="12:00"><span class="error"> * <?php echo $starttimeErr;?></span> End time <input type="text" name="endtime" maxlength="5" placeholder="12:00"><span class="error"> * <?php echo $endtimeErr;?></span><br>
 	<!-- EVENTUALLY ADD OPTION FOR TICKETS THROUGH APP (checkbox) -->
 	<div id="priceinfo">Ticket price (€) <input type="text" name="price" placeholder="5.00" maxlength="5"></div> It's free! <input type="checkbox" name="free"><br>
-	Event website <input type="text" name="siteURL" maxlength="255" placeholder="URL"><br>
-	Event Facebook <input type="text" name="fbURL" maxlength="255" placeholder="URL"><br>
-	Event description <textarea name="desc" rows=3 cols=15 maxlength="250"></textarea><br>
-	What categories does this event fall under? (Check all that apply, please select at least one)<br>
+	Event website <input type="text" name="siteURL" maxlength="255" placeholder="URL"><span class="error"> <?php echo $siteURLErr;?></span><br>
+	Event Facebook <input type="text" name="fbURL" maxlength="255" placeholder="URL"><span class="error"> <?php echo $fbURLErr;?></span><br>
+	Event description <textarea name="desc" rows=3 cols=15 maxlength="250"></textarea><span class="error"> * <?php echo $descErr;?></span><br>
+	What categories does this event fall under? (Check all that apply, please select at least one)<span class="error"> * <?php echo $catErr;?></span><br>
 
 		<table id="categorytable"><tr>
 		<td>Nature<br><input type="checkbox" name="categories[]" value="nature"></td>
@@ -125,6 +128,7 @@
 	<br><br>
 	<input type="submit" value="Add event"><br />
 	</form>
+
 
 </div> <!-- End form div -->
 
