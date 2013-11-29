@@ -1,0 +1,297 @@
+/* liststyle.css
+
+	Author: Alex Reynolds (c) 2013
+
+	Contains formatting for event listings used in pendinglist.php, eventlist.php, etc.
+
+*/
+
+/* Hides focus border on elements (Chrome) */
+:focus {outline:none;}
+
+/* Div encapsulating event listing preview */
+.eventpreview {
+	width: 100%;
+	max-width: 1000px;
+	height: 30px;
+	background-color: #ddf2f1;
+	box-sizing:border-box;	/* Allows for padding without w & h change */
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+    border-bottom: 2px solid #c9e7f2;
+    color: #414d51;
+    text-align: center;
+    font-size: 1em;
+    padding: 0;
+    padding-top: 5px;
+    margin: 0;
+    position: relative;
+}
+
+.eventpreview .grid_left {
+	width: 20%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	float: left;
+	vertical-align: middle;
+	box-sizing:border-box;	/* Allows for padding without w & h change */
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+}
+
+.eventpreview .grid_center {
+	width: 40%;
+	height: 100%;
+	padding: 0;
+	padding-left: 20px;
+	margin: 0;
+	float: left;
+	vertical-align: middle;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-align: left;
+	box-sizing:border-box;	/* Allows for padding without w & h change */
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+}
+
+.eventpreview .grid_right {
+	width: 20%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	float: left;
+	vertical-align: middle;
+	letter-spacing: .1em;
+	box-sizing:border-box;	/* Allows for padding without w & h change */
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+}
+
+.eventpreview .grid_buttons {
+	width: 20%;
+	height: 100%;
+	margin: 0;
+	float: left;
+	padding: 0;
+	box-sizing:border-box;	/* Allows for padding without w & h change */
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+}
+
+/* Div encapsulating event listing */
+.event {
+	width: 100%;
+	max-width: 1000px;
+	height: 500px;
+	background-color: #ddf2f1;
+	box-sizing:border-box;	/* Allows for padding without w & h change */
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+    border-bottom: 2px solid #c9e7f2;
+    color: #414d51;
+    display: none;
+    position: relative;
+}
+
+/* Grid system for content */
+.event .grid_left {
+	width: 20%;
+	height: 100%;
+	text-align: center;
+	padding: 20px;
+	margin: 0;
+	float: left;
+	box-sizing:border-box;	/* Allows for padding without w & h change */
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+    border-right: 1px solid #c6e5e2;
+}
+
+.event .grid_center {
+	width: 40%;
+	height: 100%;
+	text-align: left;
+	padding-top: 40px;
+	padding-left: 20px;
+	padding-right: 20px;
+	margin: 0;
+	float: left;
+	box-sizing:border-box;	/* Allows for padding without w & h change */
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+    border-right: 1px solid #c6e5e2;
+}
+
+.event .grid_right {
+	width: 20%;
+	height: 100%;
+	text-align: center;
+	vertical-align: middle;
+	padding: 20px;
+	padding-top: 50px;
+	margin: 0;
+	float: left;
+	box-sizing:border-box;	/* Allows for padding without w & h change */
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+    border-right: 1px solid #c6e5e2;
+}
+
+.event .grid_buttons {
+	width: 20%;
+	height: 100%;
+	text-align: center;
+	vertical-align: middle;
+	padding: 20px;
+	padding-top: 16%;
+	margin: 0;
+	float: left;
+	box-sizing:border-box;	/* Allows for padding without w & h change */
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+}
+
+/* Preview image of event - clipped to be circular */
+.eventimg {
+	width: 100px;
+	height: 100px;
+	border-radius: 100px;
+	overflow: hidden;
+	border: 5px solid #c9e7f2;
+	float: left;
+	margin-bottom: 20px;
+}
+
+/* Alternative font used in event listing */
+.event .altfont {
+	font-family: Arial, sans-serif;
+	text-transform: uppercase;
+	font-size: .9em;
+	font-weight: bold;
+	text-align: center;
+}
+
+/* Header text, used for event title */
+.event h1 {
+	font-size: 1.5em;
+	font-weight: bold;
+	margin: 0;
+	margin-bottom: 10px;
+	text-transform: uppercase;
+}
+
+/* Used for secondary headers */
+.event h2 {
+	font-size: 1.3em;
+	font-weight: bold;
+	margin: 0;
+	margin-top: 10px;
+	text-transform: uppercase;
+}
+
+/* Divs to display side by side */
+.event .inline {
+	display: inline-block;
+	margin-right: 20px;
+}
+
+/* Formatting for the date text */
+.event .date {
+	letter-spacing: 2px;
+	font-size: 1.2em;
+}
+
+/* Plain text with extra letter spacing */
+.event .text {
+	letter-spacing: .05em;
+}
+
+/* Icon images (for categories, in/outdoors) */
+.event .icon {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	margin-right: 5px;
+}
+
+/* Links to website and facebook */
+.event a {
+	font-style: italic;
+	text-decoration: none;
+	color: #414d51;
+}
+
+.event a:hover {
+	color: #83bab6;
+}
+
+/* Styling for buttons in event display */
+.event button {
+	width: 80px;
+	padding: 0;
+	background: #83bab6;
+	color:#fff;
+	font-size: .8em;
+	font-family: Arial, sans-serif;
+	text-transform: uppercase;
+	font-weight: bold;
+	height:30px;
+	border: none;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-transition: all .3s ease;
+  -moz-transition: all .3s ease;
+  -ms-transition: all .3s ease;
+  -o-transition: all .3s ease;
+  transition: all .3s ease;
+}
+
+/* Spacing for edit/approve/remove buttons */
+.event .grid_buttons button {
+	margin-top: 30px;
+}
+
+/* Divs containing category icon and name */
+.event .cat {
+	display: inline-block;
+	text-align: center;
+	padding: 5px;
+	font-size: .8em;
+	width: 30%;
+	margin-bottom: 10px;
+}
+
+/* Category icons */
+.event .cat img {
+	width: 25px;
+	height: 25px;
+	margin-bottom: 5px;
+}
+
+/* Toggle display buttons */
+.toggle, .event .toggle {
+	position: absolute;
+    top: 5px;
+    right: 20px;
+	width: 20px;
+	padding: 0;
+	background: #83bab6;
+	color:#fff;
+	font-size: .8em;
+	font-family: Arial, sans-serif;
+	text-transform: uppercase;
+	font-weight: bold;
+	height:20px;
+	border: none;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-transition: all .3s ease;
+  -moz-transition: all .3s ease;
+  -ms-transition: all .3s ease;
+  -o-transition: all .3s ease;
+  transition: all .3s ease;
+}

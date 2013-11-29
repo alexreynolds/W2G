@@ -24,97 +24,83 @@ a:hover {
 	color: #fc8c30;
 }
 
-/* Left side bar navigation */
-#controlnav {
+/* Band of color on top of page */
+.headerbar {
 	background-color: #fc8c30;
-	position: absolute;
+	color: #fff;
+	border-bottom: 3px solid #f9b132;
+	width: 100%;
+	height: 50px;
 	top: 0;
 	left: 0;
+	margin: 0;
+	position: absolute;
+}
+
+/* Where to go wordmark */
+.wordmark {
+	margin-top: 7px;
+	margin-left: 15px;
+}
+
+/* Admin info in top right corner */
+.headerbar .topright {
 	color: #fff;
-	width: 200px;
-	height: 100%;
+	text-align: right;
+	font-size: .9em;
+}
+
+.headerbar .topright a {
+	color: #3d3d3d;
+}
+
+.headerbar .topright a:hover {
+	color: #fff;
+}
+
+/* Top bar navigation */
+.controlnav {
+	background-color: #28ddcc;
+	position: absolute;
+	top: 53px;
+	left: 0;
+	color: #fff;
+	width: 100%;
+	height: 30px;
+	border-bottom: 3px solid #61f7e8;
+	text-align: center;
 }
 
 /* Links list in nav */
-#controlnav ul {
+.controlnav ul {
 	text-decoration: none;
 	list-style: none;
+	list-style-type: none;
 	text-align: left;
 	padding: 0;
-	margin: 0;
-	margin-top: 100px;
-	margin-left: 20px;
-	font-size: 1.3em;
-	width: 150px;
-}
-
-#controlnav li {
-	margin: 0;
-	width: 100%;
-	padding: 20px;
-	vertical-align: middle;
-}
-
-#controlnav a:hover {
-	color: #fff;
-}
-
-/* Divs containing forms */
-.form {
-	text-align: left;
-	margin-left: 300px;
-	line-height: 2em;
-}
-
-.form input, textarea {
-	border-radius: 3px;
-	border: 1px solid #dddddd;
-}
-
-/* Spans containing error messages for divs */
-.error {
-	color: #f05557;
-}
-
-/* Hidden div that displays based on form inputs */
-.moreoptions {
-	display: none;
-}
-
-/* Div to input price information in addevent.php */
-#priceinfo {
+	margin-top: 5px;
 	display: inline-block;
 }
 
-/* Input buttons for forms */
-input[type=submit] {
-	width:100px;
-	background:#28ddcc;
-	color:#fff;
-	font-size: 1.3em;
-	font-family: 'Dosis', Arial, sans-serif;
-	height:30px;
-	border: none;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-	-webkit-transition: all .3s ease;
-  -moz-transition: all .3s ease;
-  -ms-transition: all .3s ease;
-  -o-transition: all .3s ease;
-  transition: all .3s ease;
-}
-
-/* Table containing list of event categories */
-#categorytable {
+.controlnav li {
 	margin: 0;
-	margin-left: 50px;
-	border: none;
-	text-align: center;
+	margin-left: 20px;
+	padding: 5px;
 	vertical-align: middle;
-	font-size: 1em;
+	display: inline;
+	text-transform: uppercase;
+
 }
 
-#categorytable td {
-	padding: 5px;
+.controlnav li.active {
+	background-color: #2bb6ba;
+	border-radius: 5px;
+}
+
+.controlnav a {
+	color: #fff;
+}
+
+.controlnav a:hover {
+	color: #2bb6ba;
 }

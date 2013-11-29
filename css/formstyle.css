@@ -1,0 +1,118 @@
+/* formstyle.css
+
+	Author: Alex Reynolds (c) 2013
+	
+	Styling for form elements in Where to Go
+
+*/
+
+form {
+	width: 80%;
+}
+
+label {
+	text-transform: uppercase;
+	font-family: Arial, sans-serif;
+	font-weight: bold;
+	font-size: .8em;
+	line-height: 1.2em;
+	padding-top: 5px;
+}
+
+input, select {
+	margin-bottom: 15px;
+	padding:10px;
+}
+
+select {
+	/*height: 15px;*/
+}
+
+/* The current input being edited */
+input:focus { 
+	border:solid 1px #28ddcc; 
+}
+
+/* Form text boxes */
+input[type=text]{
+	border:0; 
+	padding:10px; 
+	font-size:1em; 
+	font-family:Arial, sans-serif; 
+	color:#aaa; 
+	border:solid 1px #ccc; 
+}
+
+/* Input buttons for forms */
+input[type=submit] {
+	width:100px;
+	padding: 0;
+	background:#28ddcc;
+	color:#fff;
+	font-size: 1em;
+	font-family: Arial, sans-serif;
+	text-transform: uppercase;
+	font-weight: bold;
+	height:30px;
+	border: none;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-transition: all .3s ease;
+  -moz-transition: all .3s ease;
+  -ms-transition: all .3s ease;
+  -o-transition: all .3s ease;
+  transition: all .3s ease;
+}
+
+/* Small div with one input option
+	To be displayed side by side with other small divs */
+.inputblock {
+	display: inline-block;
+	margin: 0px;
+
+}
+
+/* Divs containing forms */
+.form {
+	text-align: left;
+	margin-left: 300px;
+	line-height: 2em;
+}
+
+.form input, textarea {
+	border-radius: 3px;
+	border: 1px solid #dddddd;
+}
+
+/* Spans containing error messages for divs */
+span.error {
+	color: #f05557;
+	display:none;
+}
+
+/* Hidden div that displays based on form inputs */
+.moreoptions {
+	display: none;
+	margin: 0;
+	padding: 0;
+}
+
+/* Div to input price information in addevent.php */
+#priceinfo {
+	display: inline-block;
+}
+
+/* Table containing list of event categories */
+#categorytable {
+	margin: 0;
+	margin-left: 50px;
+	border: none;
+	text-align: center;
+	vertical-align: middle;
+	font-size: 1em;
+}
+
+#categorytable td {
+	padding: 5px;
+}

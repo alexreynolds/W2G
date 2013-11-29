@@ -1,4 +1,6 @@
-<!-- login.php
+<?php 
+
+    /* login.php
 
         Author: Alex Reynolds
 
@@ -6,9 +8,9 @@
 
         !!! Should probably be admin-only later
 
--->
+    */
 
-<?php 
+
 
     // First we execute our common code to connection to the database and start the session 
     require("common.php"); 
@@ -108,4 +110,4 @@
             // http://en.wikipedia.org/wiki/XSS_attack 
             $submitted_username = htmlentities($_POST['username'], ENT_QUOTES, 'UTF-8'); 
         } 
-    } 
+    }

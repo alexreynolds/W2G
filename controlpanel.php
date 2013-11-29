@@ -1,3 +1,5 @@
+<?php require("bin/private.php") ?>
+
 <!-- controlpanel.php
 		
 		Author: Alex Reynolds
@@ -5,6 +7,7 @@
 		The home of the administrator app control panel
 
 -->
+<!-- Login requiured for this page -->
 
 <html>
 
@@ -23,9 +26,6 @@
 	<!-- Javascript -->
 	<script src="js/jquery-1.10.2.min.js"></script>
 
-	<!-- Login requiured for this page -->
-	<?php require("scripts/private.php") ?>
-
 </head>
 
 <body>
@@ -40,7 +40,7 @@
 <ul>
 <li><a href="eventlist.php">Events list</a></li>
 <li><a href="addevent.php">Add new event</a></li>
-<li>Pending events</li>
+<li><a href="pendinglist.php">Pending events</a></li>
 <li>App analytics</li>
 <li>User permissions</li>
 </ul>

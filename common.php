@@ -13,7 +13,7 @@
     require("db_config.php");
 
     // Sets encoding to UTF-8
-    $options = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'); 
+    $options = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8');
      
     // A try/catch statement is a common method of error handling in object oriented code. 
     // First, PHP executes the code within the try block.  If at any time it encounters an 
@@ -76,7 +76,7 @@
      
     // This tells the web browser that your content is encoded using UTF-8 
     // and that it should submit content back to you using UTF-8 
-    header('Content-Type: text/html; charset=utf-8'); 
+    header('Content-Type: text/html; charset=utf-8');
      
     // This initializes a session.  Sessions are used to store information about 
     // a visitor from one web page visit to the next.  Unlike a cookie, the information is 
@@ -84,4 +84,4 @@
     // note that in most cases sessions do still use cookies and require the visitor 
     // to have cookies enabled.  For more information about sessions: 
     // http://us.php.net/manual/en/book.session.php 
-    session_start(); 
+    session_start();

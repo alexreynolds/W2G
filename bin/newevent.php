@@ -1,4 +1,6 @@
-<!-- newevent.php
+<?php
+
+	/* newevent.php
 	
 	Author: Alex Reynolds (c) 2013
 
@@ -9,13 +11,18 @@
 	TODO:
 	- Make it possible to upload images for events. Add relevant image URL in mysql query.
 	- Once in-app purchases are possible, update ticket_buy variable to reflect this in query.
+	- Validate postcode against street address
+	- Validate Facebook URL
 
--->
+	*** REDIRECT TO A CLEARER SUCCESS LOCATION
 
-<?php
+	*/
+
+
+
 
 /* Connect to database */
-//require('common.php');
+require('common.php');
 
 /* FOR VALIDATING INPUT
 	from http://www.w3schools.com/php/php_form_validation.asp */
@@ -114,12 +121,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 		$inoutErr = "Please select at least one option";
 	} else {
 		$inout = test_input($_POST['inout[]']);
-
-		// Updates in/outdoors binary variables as needed
-		for ($i = 0; $i < count($inout); $i++) {
-			if ($inout[i] == 'in') { $indoors = 1; }
-			if ($inout[i] == 'out') { $outdoors = 1; }
-		}
 		
 	}
 
@@ -187,19 +188,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 		$catErr = "Please select at least one category";
 	} else {
 		$cat = test_input($_POST['categories[]']);
-
-		// Updates category binary variables as needed
-		for ($i = 0; $i < count($cat); $i++) {
-			if ($cat[i] == 'nature') { $nature = 1; }
-			if ($cat[i] == 'food') { $food = 1; }
-			if ($cat[i] == 'art') { $art = 1; }
-			if ($cat[i] == 'expo') { $expo = 1; }
-			if ($cat[i] == 'theme') { $theme = 1; }
-			if ($cat[i] == 'culture') { $culture = 1; }
-			if ($cat[i] == 'festival') { $festival = 1; }
-			if ($cat[i] == 'theater') { $theater = 1; }
-			if ($cat[i] == 'market') { $market = 1; }
-		}
 	}
 
 
@@ -241,6 +229,29 @@ if (mysqli_connect_errno())
 	  // Image URL is "" for now (until images can be uploaded)
 	  $imgURL = "";
 
+	  	// Updates in/outdoors binary variables as needed
+	  	if (isset($_POST['inout'])) {
+		  	foreach ($_POST['inout'] as $val) {
+				if ($val == 'in') { $indoors = 1; }
+				if ($val == 'out') { $outdoors = 1; }
+			}
+		}
+
+		// Updates category binary variables as needed
+		if (isset($_POST['categories'])) { 
+			foreach ($_POST['categories'] as $val) {
+				if ($val == 'nature') { $nature = 1; }
+				if ($val == 'food') { $food = 1; }
+				if ($val == 'art') { $art = 1; }
+				if ($val == 'expo') { $expo = 1; }
+				if ($val == 'theme') { $theme = 1; }
+				if ($val == 'culture') { $culture = 1; }
+				if ($val == 'festival') { $festival = 1; }
+				if ($val == 'theater') { $theater = 1; }
+				if ($val == 'market') { $market = 1; }
+			}
+		}
+
 // Building query for submission
 
 	  /* NOTE: VALUE FOR TICKET BUY BINARY IS 0 UNTIL IN-APP PURCHASES ARE ENABLED */
@@ -253,11 +264,10 @@ if (mysqli_connect_errno())
 if (!mysqli_query($con, $sql)) {
 	die('Error: ' . mysqli_error($con));
 }
-	
-	echo "Event added to pending events!";
 
 mysqli_close($con);
 
-
-
+// Redirect to control panel page
+header('location: ../controlpanel.php');
+die();
 

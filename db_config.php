@@ -13,4 +13,4 @@
     $username = "god"; 
     $password = "124l3x05"; 
     $host = "localhost"; 
-    $dbname = "w2g"; 
+    $dbname = "w2g";

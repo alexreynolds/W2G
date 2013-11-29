@@ -13,6 +13,13 @@ $(document).ready(function() {
 		console.log('multiday');
         $('#multidayinfo').toggle();
         $('input[name=date]').toggle();
+        $('label[for=date]').toggle();
+	})
+
+	// When a city is selected
+	$('#selectcity').change(function() {
+	    var city = getSelValue(this);
+	    console.log('City selected: ' + city);
 	})
 
 	// When a province is selected

@@ -1,3 +1,5 @@
+<?php require("bin/private.php"); ?>
+
 <!-- addevent.php
 
 	Author: Alex Reynolds
@@ -11,6 +13,7 @@
 		- Check to ensure that at least one category checkbox has been checked
 		- Add required error messages to inputs
 		- Add indicator of which user submitted the event
+		- Screen in between submission and insertion to view entry and clarify/edit
 
 -->
 
@@ -25,32 +28,34 @@
 	<link href='http://fonts.googleapis.com/css?family=Dosis:400,700' rel='stylesheet' type='text/css'>
 
 	<!-- Style -->
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link rel="stylesheet" type="text/css" href="css/controlstyle.css">
+	<link rel="stylesheet" href="css/normalize.css">
+  	<link rel="stylesheet" href="css/foundation.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/controlstyle.css">
+	<link rel="stylesheet" href="css/formstyle.css">
 
-	<!-- Javascript -->
-	<script src="js/jquery-1.10.2.min.js"></script>
-	<script src="js/forms.js"></script>
-
-	<!-- Login requiured for this page -->
-	<?php require("scripts/private.php") ?>
+	
 
 </head>
 
 
 <body>
+<div class="headerbar"><img src="images/wheretogo.png" class="wordmark">
 
-<div id="adminlogoutlink" class="topright">Hello <i><?php echo htmlentities($_SESSION['user']['username'], ENT_QUOTES, 'UTF-8'); ?></i> ! | <a href="logout.php">Logout</a></div>
+<div id="adminlogoutlink" class="topright">Hello <i><?php echo htmlentities($_SESSION['user']['username'], ENT_QUOTES, 'UTF-8'); ?></i> !<br>
+		<a href="logout.php">Logout</a></div>
+
+</div>
 
 <div class="wrapper">
 <div class="content">
 
 <!-- Navigation for control panel -->
-<div id="controlnav">
+<div class="controlnav">
 <ul>
 <li><a href="eventlist.php">Events list</a></li>
-<li><a href="addevent.php">Add new event</a></li>
-<li>Pending events</li>
+<li class="active"><a href="addevent.php">Add new event</a></li>
+<li><a href="pendinglist.php">Pending events</a></li>
 <li>App analytics</li>
 <li>User permissions</li>
 </ul>
@@ -60,15 +65,12 @@
 <!-- Form to enter a new event -->
 <div class="form" id="neweventform">
 
-  <!-- php to process the form -->
-  <?php require('scripts/newevent.php') ?>
-
   <h2>Add event</h2>
-  Fill out this form to submit a new event to the database.<br>
+  Fill out this form to submit a new event to the database.<br><br>
 
-	<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-	Event name <input type="text" name="name" maxlength="255" placeholder="Event name"><span class="error"> * <?php echo $nameErr;?></span><br>
-	City <select name="city" id="selectcity" onChange="getSelValue()">
+	<form method="post" action="bin/newevent.php">
+	<label for="name">Event name</label><input type="text" name="name" maxlength="255" placeholder="Event name"><span class="error"> * <?php echo $nameErr;?></span><br>
+	<label for="city">City</label><select name="city" id="selectcity">
 			<option value="select" disabled>Select a city</option>
 			<option value="haarlem">Haarlem</option>
 			<option value="hoofddorp">Hoofddorp</option>
@@ -76,14 +78,14 @@
 			</select>
 			<span class="error"> * <?php echo $cityErr;?></span>
 			<br>
-	Event date <input type="date" name="date"><br>
-		Multi-day event <input type="checkbox" name="multiday"><br>
+	<label for="date">Event date</label><input type="date" name="date"><br>
+	<label for="multiday">Multi-day event?</label><input type="checkbox" name="multiday"><br>
 		  <!-- Div to input more information if the event will take several days -->
 		  <div class="moreoptions" id="multidayinfo">
-		  Start date <input type="date" name="startdate"><span class="error"> * <?php echo $startdateErr;?></span><br>
-		  End date <input type="date" name="enddate"><span class="error"> * <?php echo $enddateErr;?></span>
+		  <label for="startdate">Start date</label><input type="date" name="startdate"><span class="error"> * <?php echo $startdateErr;?></span><br>
+		  <label for="enddate">End date</label><input type="date" name="enddate"><span class="error"> * <?php echo $enddateErr;?></span>
 		  </div>
-	Province <select name="province" id="selectprovince">
+	<label for="province">Province</label><select name="province" id="selectprovince">
 			<option value="select" disabled>Select a province</option>
 			<option value="DR">Drenthe</option>
 			<option value="FL">Flevoland</option>
@@ -100,16 +102,20 @@
 			</select>
 			<span class="error"> * <?php echo $provinceErr;?></span>
 			<br>
-	Street address <input type="text" name="street" maxlength="30"><span class="error"> * <?php echo $streetErr;?></span>  House number <input type="text" name="housenr" maxlength="10" size="5"><span class="error"> * <?php echo $housenrErr;?></span><br>
-	Postcode <input type="text" name="postcode" maxlength="6" size="6"><br>
-	Indoors <input type="checkbox" name="inout[]" value="in"> Outdoors <input type="checkbox" name="inout[]" value="out"><span class="error"> * <?php echo $inoutErr;?></span><br>
-	Start time <input type="text" name="starttime" maxlength="5" placeholder="12:00"><span class="error"> * <?php echo $starttimeErr;?></span> End time <input type="text" name="endtime" maxlength="5" placeholder="12:00"><span class="error"> * <?php echo $endtimeErr;?></span><br>
+	<div class="inputblock"><label for="street">Street address</label><input type="text" name="street" maxlength="30"><span class="error"> * <?php echo $streetErr;?></span></div>
+	<div class="inputblock"><label for="housenr">House number</label><input type="text" name="housenr" maxlength="10" size="5"><span class="error"> * <?php echo $housenrErr;?></span></div><br>
+	<label for="postcode">Postcode</label><input type="text" name="postcode" maxlength="6" size="6"><span class="error"> * <?php echo $housenrErr;?></span><br>
+	<div class="inputblock"><label>Indoors</label><input type="checkbox" name="inout[]" value="in"></div>
+	<div class="inputblock"><label>Outdoors</label><input type="checkbox" name="inout[]" value="out"></div><span class="error"> * <?php echo $inoutErr;?></span><br>
+	<div class="inputblock"><label for="starttime">Start time</label><input type="text" name="starttime" maxlength="5" placeholder="12:00" size="5"><span class="error"> * <?php echo $starttimeErr;?></span></div>
+	<div class="inputblock"><label for="endtime">End time</label><input type="text" name="endtime" maxlength="5"  size="5" placeholder="12:00"><span class="error"> * <?php echo $endtimeErr;?></span></div><br>
 	<!-- EVENTUALLY ADD OPTION FOR TICKETS THROUGH APP (checkbox) -->
-	<div id="priceinfo">Ticket price (€) <input type="text" name="price" placeholder="5.00" maxlength="5"></div> It's free! <input type="checkbox" name="free"><br>
-	Event website <input type="text" name="siteURL" maxlength="255" placeholder="URL"><span class="error"> <?php echo $siteURLErr;?></span><br>
-	Event Facebook <input type="text" name="fbURL" maxlength="255" placeholder="URL"><span class="error"> <?php echo $fbURLErr;?></span><br>
-	Event description <textarea name="desc" rows=3 cols=15 maxlength="250"></textarea><span class="error"> * <?php echo $descErr;?></span><br>
-	What categories does this event fall under? (Check all that apply, please select at least one)<span class="error"> * <?php echo $catErr;?></span><br>
+	<div class="inputblock"><div id="priceinfo"><label for="price">Ticket price (€)</label><input type="text" name="price" placeholder="5.00" maxlength="5"></div></div>
+	<div class="inputblock"><label for="free">It's free!</label><input type="checkbox" name="free"></div><br>
+	<label for="siteURL">Event website</label><input type="text" name="siteURL" maxlength="255" placeholder="URL"><span class="error"> <?php echo $siteURLErr;?></span><br>
+	<label for="fbURL">Event Facebook</label><input type="text" name="fbURL" maxlength="255" placeholder="URL"><span class="error"> <?php echo $fbURLErr;?></span><br>
+	<label for="desc">Event description</label><textarea name="desc" rows=3 cols=15 maxlength="250"></textarea><span class="error"> * <?php echo $descErr;?></span><br>
+	What categories does this event fall under? <i>Check all that apply, please select at least one.</i><span class="error"> * <?php echo $catErr;?></span><br>
 
 		<table id="categorytable"><tr>
 		<td>Nature<br><input type="checkbox" name="categories[]" value="nature"></td>
@@ -136,8 +142,14 @@
 </div> <!-- End wrapper div -->
 
 
-
-
+	<!-- Javascript -->
+	<script src="js/jquery-1.10.2.min.js"></script>
+	<script src="js/forms.js"></script>
+	<script src="js/vendor/jquery.js"></script>
+	<script src="js/foundation.min.js"></script>
+	<script>
+	   $(document).foundation();
+	</script>
 </body>
 
 </html>

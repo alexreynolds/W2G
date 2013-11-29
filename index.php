@@ -1,3 +1,4 @@
+<?php require("bin/common.php") ?>
 <html>
 
 <head>
@@ -22,19 +23,7 @@
 <body>
 
 <div id="adminarea" class="topright">
-	<?php
-		if (empty($_SESSION['user'])) {
-			echo '<a href="#" id="adminloginlink">Admin login</a>';
-		}
-		else if (isset($_SESSION['user'])){
-			echo 'Hello ';
-			echo htmlentities($_SESSION['user']['username'], ENT_QUOTES, 'UTF-8');
-			echo ' | <a href="controlpanel.php">Control Panel</a> | <a href="logout.php">Logout</a>';
-		}
-		else {
-			print('weird shit with users right now.');
-		}
-	?>
+<a href="#" id="adminloginlink">Admin login</a>
 </div>
 
 	<!-- Popup div for admin login -->
@@ -43,15 +32,15 @@
 	<!-- Button to close window -->
 	<img src="images/icon_x.png" id="iconquit">
 
-	<h1>Speak, friend, and enter.</h1> 
-	<!-- Login script -->
-	<?php require("login.php") ?>
-	<form action="" method="post"> 
-	    <input type="text" name="username" value="<?php echo $submitted_username; ?>" placeholder="Username"/> 
+	<h1>Speak, friend, and enter.</h1>
+	<form action="bin/login.php" method="post" name="adminloginform" id="adminloginform"> 
+	    <input type="text" name="username" id="username" value="<?php echo $submitted_username; ?>" placeholder="Username"/>
+	    <label class="error" for="username" id="username_error">This field is required.</label>
 	    <br />
-	    <input type="password" name="password" value="" placeholder="Password"/> 
+	    <input type="password" name="password" id="password" value="" placeholder="Password"/>
+	    <label class="error" for="password" id="password_error">This field is required.</label>
 	    <br />
-	    <input type="submit" value="Login" /> 
+	    <input type="submit" value="Login" class="submit"/> 
 	</form> 
 	Don't have an account yet? <a href="register.php">Register now</a>.
 

@@ -1,0 +1,429 @@
+<!-- eventtemplate.html
+
+	Author: Alex Reynolds (c) 2013
+
+	A template for the layout of events as listed in the administrative area
+
+-->
+
+<html>
+<head>
+
+<!-- Google Fonts import -->
+<link href='http://fonts.googleapis.com/css?family=Dosis:400,700' rel='stylesheet' type='text/css'>
+
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/controlstyle.css">
+
+<!-- Javascript -->
+<script src="js/jquery-1.10.2.min.js"></script>
+<!-- <script src="js/raphael-min.js"></script>	js library for cropping image to circle -->
+
+<style>
+
+/* Hides focus border on elements (Chrome) */
+:focus {outline:none;}
+
+/* Div encapsulating event listing preview */
+.eventpreview {
+	width: 100%;
+	height: 30px;
+	background-color: #ddf2f1;
+	box-sizing:border-box;	/* Allows for padding without w & h change */
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+    border-bottom: 2px solid #c9e7f2;
+    color: #414d51;
+    text-align: center;
+    font-size: 1em;
+    padding: 0;
+    padding-top: 5px;
+    margin: 0;
+    position: relative;
+}
+
+.eventpreview .grid_left {
+	width: 20%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	float: left;
+	vertical-align: middle;
+	box-sizing:border-box;	/* Allows for padding without w & h change */
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+}
+
+.eventpreview .grid_center {
+	width: 40%;
+	height: 100%;
+	padding: 0;
+	padding-left: 20px;
+	margin: 0;
+	float: left;
+	vertical-align: middle;
+	font-weight: bold;
+	text-align: left;
+	box-sizing:border-box;	/* Allows for padding without w & h change */
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+}
+
+.eventpreview .grid_right {
+	width: 20%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	float: left;
+	vertical-align: middle;
+	letter-spacing: .1em;
+	box-sizing:border-box;	/* Allows for padding without w & h change */
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+}
+
+.eventpreview .grid_buttons {
+	width: 20%;
+	height: 100%;
+	margin: 0;
+	float: left;
+	padding: 0;
+	box-sizing:border-box;	/* Allows for padding without w & h change */
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+}
+
+/* Div encapsulating event listing */
+.event {
+	width: 100%;
+	height: 500px;
+	background-color: #ddf2f1;
+	box-sizing:border-box;	/* Allows for padding without w & h change */
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+    border-bottom: 2px solid #c9e7f2;
+    color: #414d51;
+    display: none;
+    position: relative;
+}
+
+/* Grid system for content */
+.event .grid_left {
+	width: 20%;
+	height: 100%;
+	text-align: center;
+	padding: 20px;
+	margin: 0;
+	float: left;
+	box-sizing:border-box;	/* Allows for padding without w & h change */
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+    border-right: 1px solid #c6e5e2;
+}
+
+.event .grid_center {
+	width: 40%;
+	height: 100%;
+	text-align: left;
+	padding-top: 40px;
+	padding-left: 20px;
+	padding-right: 20px;
+	margin: 0;
+	float: left;
+	box-sizing:border-box;	/* Allows for padding without w & h change */
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+    border-right: 1px solid #c6e5e2;
+}
+
+.event .grid_right {
+	width: 20%;
+	height: 100%;
+	text-align: center;
+	vertical-align: middle;
+	padding: 20px;
+	padding-top: 50px;
+	margin: 0;
+	float: left;
+	box-sizing:border-box;	/* Allows for padding without w & h change */
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+    border-right: 1px solid #c6e5e2;
+}
+
+.event .grid_buttons {
+	width: 20%;
+	height: 100%;
+	text-align: center;
+	vertical-align: middle;
+	padding: 20px;
+	padding-top: 16%;
+	margin: 0;
+	float: left;
+	box-sizing:border-box;	/* Allows for padding without w & h change */
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+}
+
+/* Preview image of event - clipped to be circular */
+.eventimg {
+	width: 100px;
+	height: 100px;
+	border-radius: 100px;
+	overflow: hidden;
+	border: 5px solid #c9e7f2;
+	float: left;
+	margin-bottom: 20px;
+}
+
+/* Alternative font used in event listing */
+.event .altfont {
+	font-family: Arial, sans-serif;
+	text-transform: uppercase;
+	font-size: .9em;
+	font-weight: bold;
+	text-align: center;
+}
+
+/* Header text, used for event title */
+.event h1 {
+	font-size: 1.5em;
+	font-weight: bold;
+	margin: 0;
+	margin-bottom: 10px;
+	text-transform: uppercase;
+}
+
+/* Used for secondary headers */
+.event h2 {
+	font-size: 1.3em;
+	font-weight: bold;
+	margin: 0;
+	margin-top: 10px;
+	text-transform: uppercase;
+}
+
+/* Divs to display side by side */
+.event .inline {
+	display: inline-block;
+	margin-right: 20px;
+}
+
+/* Formatting for the date text */
+.event .date {
+	letter-spacing: 2px;
+	font-size: 1.2em;
+}
+
+/* Plain text with extra letter spacing */
+.event .text {
+	letter-spacing: .05em;
+}
+
+/* Icon images (for categories, in/outdoors) */
+.event .icon {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	margin-right: 5px;
+}
+
+/* Links to website and facebook */
+.event a {
+	text-transform: italic;
+	text-decoration: none;
+	color: #414d51;
+}
+
+.event a:hover {
+	color: #83bab6;
+}
+
+/* Styling for buttons in event display */
+.event button {
+	width: 80px;
+	padding: 0;
+	background: #83bab6;
+	color:#fff;
+	font-size: .8em;
+	font-family: Arial, sans-serif;
+	text-transform: uppercase;
+	font-weight: bold;
+	height:30px;
+	border: none;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-transition: all .3s ease;
+  -moz-transition: all .3s ease;
+  -ms-transition: all .3s ease;
+  -o-transition: all .3s ease;
+  transition: all .3s ease;
+}
+
+/* Spacing for edit/approve/remove buttons */
+.event .grid_buttons button {
+	margin-top: 30px;
+}
+
+/* Divs containing category icon and name */
+.event .cat {
+	display: inline-block;
+	text-align: center;
+	padding: 5px;
+	font-size: .8em;
+	width: 30%;
+	margin-bottom: 10px;
+}
+
+/* Category icons */
+.event .cat img {
+	width: 25px;
+	height: 25px;
+	margin-bottom: 5px;
+}
+
+/* Toggle display buttons */
+.toggle, .event .toggle {
+	position: absolute;
+    top: 5px;
+    right: 20px;
+	width: 20px;
+	padding: 0;
+	background: #83bab6;
+	color:#fff;
+	font-size: .8em;
+	font-family: Arial, sans-serif;
+	text-transform: uppercase;
+	font-weight: bold;
+	height:20px;
+	border: none;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-transition: all .3s ease;
+  -moz-transition: all .3s ease;
+  -ms-transition: all .3s ease;
+  -o-transition: all .3s ease;
+  transition: all .3s ease;
+}}
+
+
+</style>
+
+	<script>
+	$(document).ready(function(e){
+
+	   $('.toggle').on('click',function(e){
+	      $('.event').slideToggle();
+	      //$('.eventpreview').slideToggle();
+	      $(this).text(function(i, text){
+          	return text === "+" ? "-" : "+";
+      		})
+	   });
+
+	})
+	</script>
+</head>
+
+<body>
+
+<!-- Div containing event preview -->
+<div class="eventpreview">
+	<div class="grid_left"><span class="altfont">Haarlem, NH</span></div>
+	<div class="grid_center">SUPER COOL EVENT YO</div>
+	<div class="grid_right">2.12.13 - 3.12.13</div>
+	<div class="grid_buttons"><button class="toggle">+</button></div>
+</div>
+
+<!-- Div containing event -->
+<div class="event" id="eventnum">
+
+	<div class="grid_left">
+		<img src="images/sampleimg.jpg" class="eventimg">
+		<br>
+		<span class="altfont">Haarlem, NH</span>
+		<br><br>
+		<button>Edit image</button>
+		<br><br>
+		<h2>&#8364;20.50</h2>
+		per ticket<br><br>
+		<img src="images/icon_tickets_black" class="icon"> Online tickets available
+	</div>
+
+	<div class="grid_center">
+		<h1>Super Cool Event Yo</h1>
+		<div class="inline">
+			<span class="altfont">STARTS</span><br>
+			<span class="date">02.12.13</span><br>
+			19:00
+		</div>
+		<div class="inline">
+			<span class="altfont">ENDS</span><br>
+			<span class="date">03.12.13</span><br>
+			03:00
+		</div>
+
+		<br><br>
+
+		<span class="altfont">Address</span><br>
+		<span class="text">Kruisweg 2D<br>
+		2011 LC Haarlem</span><br>
+
+		<br>
+
+		<div class="inline">
+		<img src="images/icon_indoors_grey" class="icon"> INDOORS
+		</div>
+
+		<div class="inline">
+		<img src="images/icon_outdoors_black" class="icon"> OUTDOORS
+		</div>
+
+		<br><br>
+
+		<img src="images/icon_internet_black" class="icon"> <a href="http://www.somethingawesome.nl">http://www.somethingawesome.nl</a><br><br>
+		<img src="images/icon_facebook_grey" class="icon"> No URL listed<br>
+
+		<br><br>
+
+		<span class="altfont">Description</span><br>
+		Airedale cream cheese bocconcini. Parmesan chalk and cheese everyone loves camembert de normandie cow babybel parmesan swiss. Blue castello everyone loves cheesy feet cheese strings who moved my cheese fromage airedale airedale. Red leicester cottage cheese everyone loves feta cheese and biscuits cheese and biscuits melted cheese stinking bishop. Cheesecake emmental.
+
+		<br>
+
+	</div> <!-- End center div -->
+
+	<div class="grid_right">
+		<span class="altfont">Categories</span><br><br>
+		<div class="cat"><img src="images/icon_nature_black.png"><br>Nature</div>
+		<div class="cat"><img src="images/icon_food_grey.png"><br>Food</div><br>
+
+		<div class="cat"><img src="images/icon_art_black.png"><br>Art</div>
+		<div class="cat"><img src="images/icon_expo_grey.png"><br>Expo</div><br>
+
+		<div class="cat"><img src="images/icon_theme_grey.png"><br>Theme Park</div>
+		<div class="cat"><img src="images/icon_culture_black.png"><br>Culture</div><br>
+
+		<div class="cat"><img src="images/icon_festival_black.png"><br>Festival</div>
+		<div class="cat"><img src="images/icon_theater_grey.png"><br>Theater</div><br>
+
+		<div class="cat"><img src="images/icon_market_grey.png"><br>Market</div>
+
+	</div>
+
+	<div class="grid_buttons">
+		<button>Edit</button>
+		<br>
+		<button>Approve</button>
+		<br>
+		<button>Remove</button>
+	</div>
+
+</div> <!-- End event div -->
+
+
+
+</body>
+
+</html>

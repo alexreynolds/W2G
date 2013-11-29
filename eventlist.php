@@ -1,3 +1,4 @@
+<?php require("bin/private.php") ?>
 <!-- eventlist.php
 
 	Author: Alex Reynolds
@@ -22,18 +23,39 @@
 
 	<!-- Javascript -->
 	<script src="js/jquery-1.10.2.min.js"></script>
-
-	<!-- Login requiured for this page -->
-	<?php require("scripts/private.php") ?>
+	
 
 </head>
 
 
 <body>
 
+<div class="headerbar"><img src="images/wheretogo.png" class="wordmark">
+
+<div id="adminlogoutlink" class="topright">Hello <i><?php echo htmlentities($_SESSION['user']['username'], ENT_QUOTES, 'UTF-8'); ?></i> !<br>
+		<a href="logout.php">Logout</a></div>
+
+</div>
+
+<div class="wrapper">
+<div class="content">
+
+<!-- Navigation for control panel -->
+<div class="controlnav">
+<ul>
+<li class="active"><a href="eventlist.php">Events list</a></li>
+<li><a href="addevent.php">Add new event</a></li>
+<li><a href="pendinglist.php">Pending events</a></li>
+<li>App analytics</li>
+<li>User permissions</li>
+</ul>
+</div>
 
 
-
+<!-- End content div -->
+</div>
+<!-- End wrapper div -->
+</div>
 
 </body>
 
